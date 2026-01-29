@@ -1,14 +1,15 @@
-kind: Service
 apiVersion: v1
+kind: Service
 metadata:
   name: appleui-service
   namespace: appleui-namespace
   labels:
     app: appleui
 spec:
+  type: LoadBalancer           # <-- Important!
   selector:
     app: appleui
   ports:
-    - protocol: TCP
-      port: 80
-      targetPort: 8080
+    - protocol: TCP            # <-- Protocol, not LoadBalancer
+      port: 80                # <-- Service port
+      targetPort: 8080        # <-- Container port
