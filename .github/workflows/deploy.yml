@@ -10,11 +10,14 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
+    # ----------------------------
+    # Checkout Code
+    # ----------------------------
     - name: Checkout source code
       uses: actions/checkout@v4
 
     # ----------------------------
-    # Docker Hub Login
+    # Login to Docker Hub
     # ----------------------------
     - name: Login to Docker Hub
       run: |
@@ -37,7 +40,7 @@ jobs:
       with:
         aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
         aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-        aws-region: ap-south-1
+        aws-region: us-east-1
 
     # ----------------------------
     # Connect to EKS
@@ -45,8 +48,8 @@ jobs:
     - name: Update kubeconfig
       run: |
         aws eks update-kubeconfig \
-          --region ap-south-1 \
-          --name pure-design-cluster
+          --region us-east-1 \
+          --name ashokit-cluster4
 
     # ----------------------------
     # Deploy to Kubernetes
