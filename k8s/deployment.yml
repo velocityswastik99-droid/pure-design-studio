@@ -1,0 +1,22 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: appleui-deployment
+  namespace: appleui-namespace
+  labels:
+    app: appleui
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: appleui
+  template:
+    metadata:
+      labels:
+        app: appleui
+    spec:
+      containers:
+      - name: appleui-container
+        image: velocity9/puredesingappleui:latest
+        ports:
+        - containerPort: 8080
