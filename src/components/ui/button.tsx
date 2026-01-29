@@ -5,20 +5,21 @@ import { cva, type VariantProps } from "class-variance-authority";
 import { cn } from "@/lib/utils";
 
 const buttonVariants = cva(
-  "inline-flex items-center justify-center gap-2 whitespace-nowrap text-sm font-medium ring-offset-background transition-all duration-300 ease-apple focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg]:size-4 [&_svg]:shrink-0",
+  "inline-flex items-center justify-center gap-2 whitespace-nowrap text-sm font-semibold ring-offset-background transition-all duration-300 ease-out-expo focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg]:size-4 [&_svg]:shrink-0",
   {
     variants: {
       variant: {
-        default: "bg-primary text-primary-foreground hover:bg-primary/90 rounded-full",
+        default: "bg-primary text-primary-foreground hover:bg-primary/90 rounded-full shadow-soft hover:shadow-medium",
         destructive: "bg-destructive text-destructive-foreground hover:bg-destructive/90 rounded-full",
-        outline: "border border-input bg-background hover:bg-secondary rounded-full",
+        outline: "border-2 border-input bg-background hover:bg-secondary hover:border-accent rounded-full",
         secondary: "bg-secondary text-secondary-foreground hover:bg-secondary/80 rounded-full",
-        ghost: "hover:bg-secondary rounded-lg",
+        ghost: "hover:bg-secondary rounded-xl",
         link: "text-accent underline-offset-4 hover:underline",
-        // Apple-style variants
-        hero: "bg-accent text-accent-foreground hover:brightness-110 rounded-full shadow-soft hover:shadow-medium",
-        heroOutline: "bg-transparent border-2 border-accent text-accent hover:bg-accent hover:text-accent-foreground rounded-full",
-        nav: "text-foreground/80 hover:text-foreground rounded-lg font-normal",
+        // Premium variants
+        hero: "bg-accent text-accent-foreground hover:brightness-110 rounded-full shadow-glow hover:shadow-glow-lg",
+        heroOutline: "bg-transparent border-2 border-accent text-accent hover:bg-accent hover:text-accent-foreground rounded-full hover:shadow-glow",
+        nav: "text-foreground/80 hover:text-foreground rounded-xl font-medium",
+        gradient: "bg-gradient-to-r from-accent via-accent-secondary to-accent-tertiary text-white rounded-full shadow-glow hover:shadow-glow-lg hover:scale-105",
       },
       size: {
         default: "h-11 px-6 py-2",
