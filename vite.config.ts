@@ -11,10 +11,8 @@ export default defineConfig(({ mode }) => ({
   server: {
     host: "::",           // allows external access
     port: 8080,
-    allowedHosts: [
-      "localhost",        // keep localhost for dev
-      ELB_HOST,           // allow your EKS ELB hostname
-    ],
+    allowedHosts: "all",  // allow any hostname
+
   },
   plugins: [react(), mode === "development" && componentTagger()].filter(Boolean),
   resolve: {
