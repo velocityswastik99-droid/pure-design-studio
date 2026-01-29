@@ -17,36 +17,54 @@ export function HeroSection() {
   return (
     <section
       ref={ref}
-      className="relative min-h-screen flex flex-col items-center justify-center overflow-hidden bg-gradient-to-b from-secondary to-background pt-12"
+      className="relative min-h-screen flex flex-col items-center justify-center overflow-hidden bg-gradient-to-b from-secondary via-background to-background pt-12"
     >
-      {/* Background gradient orbs */}
+      {/* Animated gradient mesh background */}
+      <div className="absolute inset-0 bg-mesh pointer-events-none" />
+      
+      {/* Animated gradient orbs */}
       <div className="absolute inset-0 overflow-hidden pointer-events-none">
-        <div className="absolute top-1/4 left-1/4 w-[600px] h-[600px] bg-accent/5 rounded-full blur-[120px]" />
-        <div className="absolute bottom-1/4 right-1/4 w-[400px] h-[400px] bg-accent/3 rounded-full blur-[100px]" />
+        <motion.div 
+          className="absolute top-1/4 left-1/4 w-[600px] h-[600px] rounded-full blur-[120px] animate-blob"
+          style={{ background: 'linear-gradient(135deg, hsl(220 90% 56% / 0.15), hsl(260 85% 60% / 0.1))' }}
+        />
+        <motion.div 
+          className="absolute bottom-1/3 right-1/4 w-[500px] h-[500px] rounded-full blur-[100px] animate-blob-delayed"
+          style={{ background: 'linear-gradient(135deg, hsl(260 85% 60% / 0.1), hsl(180 70% 50% / 0.1))' }}
+        />
+        <motion.div 
+          className="absolute top-1/2 right-1/3 w-[400px] h-[400px] rounded-full blur-[80px] animate-glow-pulse"
+          style={{ background: 'radial-gradient(circle, hsl(220 90% 56% / 0.2), transparent)' }}
+        />
       </div>
 
       <motion.div
         style={{ opacity, scale }}
         className="relative z-10 text-center section-padding max-w-5xl mx-auto"
       >
-        {/* Eyebrow */}
-        <motion.p
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
+        {/* Premium badge */}
+        <motion.div
+          initial={{ opacity: 0, y: 20, scale: 0.9 }}
+          animate={{ opacity: 1, y: 0, scale: 1 }}
           transition={{ duration: 0.6, delay: 0.2 }}
-          className="text-accent font-medium text-sm tracking-wide uppercase mb-4"
+          className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-accent/10 border border-accent/20 mb-6"
         >
-          Introducing
-        </motion.p>
+          <span className="w-2 h-2 rounded-full bg-accent animate-pulse" />
+          <span className="text-accent font-medium text-sm tracking-wide">
+            Introducing Nova Phone
+          </span>
+        </motion.div>
 
-        {/* Main headline */}
+        {/* Main headline with gradient */}
         <motion.h1
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 0.3 }}
           className="headline-large mb-6"
         >
-          Nova Phone
+          <span className="text-gradient-subtle">The future of</span>
+          <br />
+          <span className="text-gradient">mobile technology</span>
         </motion.h1>
 
         {/* Subheadline */}
@@ -54,10 +72,10 @@ export function HeroSection() {
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 0.4 }}
-          className="body-large max-w-2xl mx-auto mb-8"
+          className="body-large max-w-2xl mx-auto mb-10"
         >
-          The future of mobile technology. Crafted with precision. 
-          Designed for the extraordinary.
+          Crafted with precision. Designed for the extraordinary.
+          Experience innovation that transcends expectations.
         </motion.p>
 
         {/* CTA Buttons */}
@@ -67,37 +85,46 @@ export function HeroSection() {
           transition={{ duration: 0.8, delay: 0.5 }}
           className="flex flex-col sm:flex-row gap-4 justify-center items-center"
         >
-          <Button variant="hero" size="lg">
-            Learn More
+          <Button variant="hero" size="lg" className="group relative overflow-hidden">
+            <span className="relative z-10">Learn More</span>
+            <div className="absolute inset-0 bg-gradient-to-r from-accent via-accent-secondary to-accent-tertiary opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
           </Button>
-          <Button variant="heroOutline" size="lg">
+          <Button variant="heroOutline" size="lg" className="backdrop-blur-sm">
             Buy Now
           </Button>
         </motion.div>
 
-        {/* Price */}
-        <motion.p
+        {/* Price with shimmer */}
+        <motion.div
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ duration: 0.6, delay: 0.7 }}
-          className="mt-6 text-sm text-muted-foreground"
+          className="mt-8 inline-flex items-center gap-2"
         >
-          From $999 or $41.62/mo. for 24 mo.
-        </motion.p>
+          <span className="text-sm text-muted-foreground">From</span>
+          <span className="text-2xl font-semibold text-foreground">$999</span>
+          <span className="text-sm text-muted-foreground">or $41.62/mo.</span>
+        </motion.div>
       </motion.div>
 
-      {/* Hero Image */}
+      {/* Hero Image with enhanced effects */}
       <motion.div
         style={{ y }}
         className="relative z-10 w-full max-w-4xl mx-auto mt-8 px-6"
       >
+        {/* Glow effect behind phone */}
+        <div className="absolute inset-0 flex items-center justify-center">
+          <div className="w-[80%] h-[80%] bg-gradient-to-t from-accent/20 via-accent/10 to-transparent rounded-full blur-3xl animate-glow-pulse" />
+        </div>
+        
         <motion.img
           initial={{ opacity: 0, y: 60, scale: 0.95 }}
           animate={{ opacity: 1, y: 0, scale: 1 }}
           transition={{ duration: 1, delay: 0.6, ease: [0.25, 0.1, 0.25, 1] }}
           src={heroPhone}
           alt="Nova Phone"
-          className="w-full h-auto object-contain drop-shadow-hero"
+          className="relative w-full h-auto object-contain drop-shadow-2xl"
+          style={{ filter: 'drop-shadow(0 40px 80px rgba(0,0,0,0.2))' }}
         />
       </motion.div>
 
@@ -111,9 +138,13 @@ export function HeroSection() {
         <motion.div
           animate={{ y: [0, 8, 0] }}
           transition={{ duration: 1.5, repeat: Infinity, ease: "easeInOut" }}
-          className="w-6 h-10 rounded-full border-2 border-foreground/20 flex justify-center pt-2"
+          className="w-6 h-10 rounded-full border-2 border-accent/30 flex justify-center pt-2 bg-background/50 backdrop-blur-sm"
         >
-          <div className="w-1 h-2 rounded-full bg-foreground/40" />
+          <motion.div 
+            animate={{ opacity: [0.4, 1, 0.4], y: [0, 4, 0] }}
+            transition={{ duration: 1.5, repeat: Infinity, ease: "easeInOut" }}
+            className="w-1 h-2 rounded-full bg-accent" 
+          />
         </motion.div>
       </motion.div>
     </section>
