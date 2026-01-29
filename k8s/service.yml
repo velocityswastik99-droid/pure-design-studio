@@ -1,0 +1,14 @@
+kind: Service
+apiVersion: v1
+metadata:
+  name: appleui-service
+  namespace: appleui-namespace
+  labels:
+    app: appleui
+spec:
+  selector:
+    app: appleui
+  ports:
+    - protocol: TCP
+      port: 80
+      targetPort: 8080
